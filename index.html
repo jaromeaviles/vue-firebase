@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<style>
+    ul {
+        list-style-type: none;
+        margin: 20px;
+        padding: 0;
+    }
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+        cursor: pointer;
+    }
+    li.fav {
+        background-color: pink;
+        color: white;
+        padding: 10px 20px;
+    }
+</style>
+<body>
+    <h1>Hello Vue :)</h1>
+
+    <div id="app">
+        <div v-if="showBooks">
+            <ul>
+                <li v-for="game in filteredGames" :class="{ fav: game.isFav }" @click="toggleFav(game)">
+                    <img :src="game.img" :alt="game.name" />
+                    <h2>{{game.name}}</h2>
+                    <p>{{game.releaseDate}}</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- <button @click="changeTitle">Change Title</button> -->
+        <button @click="hideBooks" v-if="showBooks">Hide Books</button>
+        <button @click="hideBooks" v-else>Show Books</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
